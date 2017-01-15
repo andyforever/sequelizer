@@ -14,4 +14,4 @@ npm install
 npm start
 ```
 
-![screenshot](https://img.alicdn.com/tps/TB1TRfPPXXXXXcLXXXXXXXXXXXX-1720-1160.png)
+![screenshot](https://gw.alicdn.com/tps/TB1ZWLGPXXXXXcoXFXXXXXXXXXX-1720-1160.png)
