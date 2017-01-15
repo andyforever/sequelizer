@@ -103,38 +103,42 @@
     </div>
   </body>
   <script>
-    var generate = require('./generate')
+    const generate = require('./generate')
     const {dialog} = require('electron').remote;
 
+    const $progreeBar = document.getElementById('progreeBar');
+    const $exportBtn = document.getElementById('exportBtn');
+    const $directoryInput = document.getElementById('directory');
+
+
     function handleSubmit(form) {
-      var data = getFormData(form);
+      let data = getFormData(form);
 
       data.tables = data.tables.split(',');
       data.directory = data.directory || __dirname + '/models'
 
-      document.getElementById('progreeBar').style.display="block";
-      document.getElementById('exportBtn').disabled = true;
+      $progreeBar.style.display="block";
+      $exportBtn.disabled = true;
       generate(data.database, data.username, data.password, data, function() {
-        document.getElementById('progreeBar').style.display="none";
-        document.getElementById('exportBtn').disabled = false;
+        $progreeBar.style.display="none";
+        $exportBtn.disabled = false;
       })
     }
 
     function openFileDialog() {
-      dialog.showOpenDialog({properties: ['openDirectory']}, function(filePaths) {
+      dialog.showOpenDialog({properties: ['openDirectory', 'createDirectory']}, function(filePaths) {
         if (filePaths) {
-          document.getElementById('directory').value = filePaths[0];
+          $directoryInput.value = filePaths[0];
         }
       })
     }
 
-
     function getFormData(form) {
-      var data = {};
-      var inputs = form.getElementsByTagName('input')
+      let data = {};
+      let inputs = form.getElementsByTagName('input')
 
       for (var i = 0; i < inputs.length; i++) {
-        if(inputs[i].type == 'text') {
+        if(inputs[i].type == 'text' || inputs[i].type == 'password') {
           data[inputs[i].name] = inputs[i].value
         } else if (inputs[i].type == 'radio' || inputs[i].type == 'checkbox') {
           if (inputs[i].checked) {
