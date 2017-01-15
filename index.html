@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Sequelizer</title>
+    <link rel="stylesheet" href="./mdl/material.min.css">
+    <script src="./mdl/material.min.js"></script>
+  </head>
+  <body>
+    <div id="main">
+      <form onsubmit="handleSubmit(this); return false;">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="host" name="host">
+              <label class="mdl-textfield__label" for="host">Host</label>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="port" pattern="-?[0-9]*(\.[0-9]+)?" name="port">
+              <label class="mdl-textfield__label" for="port">Port</label>
+              <span class="mdl-textfield__error">Port must be number type!</span>
+            </div>
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="database" name="database">
+              <label class="mdl-textfield__label" for="database">Database</label>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+              <input type="radio" id="option-1" class="mdl-radio__button" name="dialect" value="mysql" checked>
+              <span class="mdl-radio__label">Mysql</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+              <input type="radio" id="option-2" class="mdl-radio__button" name="dialect" value="mariadb">
+              <span class="mdl-radio__label">Mariadb</span>
+            </label>
+             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+              <input type="radio" id="option-3" class="mdl-radio__button" name="dialect" value="sqlite">
+              <span class="mdl-radio__label">Sqlite</span>
+            </label>
+             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+              <input type="radio" id="option-4" class="mdl-radio__button" name="dialect" value="postgres">
+              <span class="mdl-radio__label">Postgres</span>
+            </label>
+             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-5">
+              <input type="radio" id="option-5" class="mdl-radio__button" name="dialect" value="mssql">
+              <span class="mdl-radio__label">Mssql</span>
+            </label>
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="username" name="username">
+              <label class="mdl-textfield__label" for="username">Username</label>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="password" name="password">
+              <label class="mdl-textfield__label" for="password">Password</label>
+            </div>
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="tables" name="tables">
+              <label class="mdl-textfield__label" for="tables">Tables(Comma-separated)</label>
+            </div>
+          </div>
+          <div class="mdl-cell mdl-cell--6-col">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="directory" name="directory">
+              <label class="mdl-textfield__label" for="output">Output</label>
+            </div>
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--6-col">
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="camel">
+              <input type="checkbox" id="camel" class="mdl-switch__input" checked name="camel">
+              <span class="mdl-switch__label" style="color: #999">Camelize</span>
+            </label>
+          </div>
+        </div>
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--12-col" style="text-align: center;">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+               Export
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script>
+
+    var generate = require('./generate')
+    function handleSubmit(form) {
+      var data = getFormData(form);
+
+      data.tables = data.tables.split(',');
+      data.directory = data.directory || __dirname + '/models'
+
+      generate(data.database, data.username, data.password, data)
+    }
+
+
+    function getFormData(form) {
+      var data = {};
+      var inputs = form.getElementsByTagName('input')
+
+      for (var i = 0; i < inputs.length; i++) {
+        if(inputs[i].type == 'text') {
+          data[inputs[i].name] = inputs[i].value
+        } else if (inputs[i].type == 'radio' || inputs[i].type == 'checkbox') {
+          if (inputs[i].checked) {
+            data[inputs[i].name] = inputs[i].value;
+          }
+        }
+      }
+
+      return data;
+    }
+
+  </script>
+
+</html>
