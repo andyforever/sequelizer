@@ -86,8 +86,8 @@
         </div>
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--6-col">
-            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="camel">
-              <input type="checkbox" id="camel" class="mdl-switch__input" checked name="camel">
+            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="camelCase">
+              <input type="checkbox" id="camelCase" class="mdl-switch__input" checked name="camelCase">
               <span class="mdl-switch__label" style="color: #999">Camelize</span>
             </label>
           </div>
@@ -116,6 +116,7 @@
 
       data.tables = data.tables.split(',');
       data.directory = data.directory || __dirname + '/models'
+      data.camelCase = data.camelCase == 'on' ? true : false
 
       $progreeBar.style.display="block";
       $exportBtn.disabled = true;
