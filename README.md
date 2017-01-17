@@ -15,3 +15,7 @@ npm start
 ```
 
 ![screenshot](https://gw.alicdn.com/tps/TB1ZWLGPXXXXXcoXFXXXXXXXXXX-1720-1160.png)
+
+Specially Thanks the great projects.
+[sequelize](https://github.com/sequelize/sequelize)
+[sqquelize-auto](https://github.com/sequelize/sequelize-auto)
