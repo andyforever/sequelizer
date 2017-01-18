@@ -21,7 +21,7 @@ git clone https://github.com/andyforever/sequelizer.git && cd sequelizer && npm 
 
 Or download the sequelizer.app for MacOs and just run it. [Download](https://github.com/andyforever/sequelizer/releases/download/publish%2F0.0.1/sequelizer.zip)
 
-> *Authorization may required. 
+> Authorization may required. 
 
 > Other OS(Linux,Windows) will be supportted latter.
 
