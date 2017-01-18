@@ -122,7 +122,7 @@
     function handleSubmit(form) {
       const data = getFormData(form);
 
-      data.tables = data.tables.split(',');
+      data.tables = data.tables ? data.tables.split(',') : '';
       data.directory = data.directory || __dirname + '/models'
       data.camelCase = data.camelCase === 'on'
 
