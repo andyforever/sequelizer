@@ -23,7 +23,7 @@ Or download the sequelizer.app for MacOs and just run it. [Download](https://git
 
 > Authorization may required. 
 
-> Other OS(Linux,Windows) will be supportted latter.
+> Other OS(Linux,Windows) will be supported latter.
 
 ![screenshot](https://gw.alicdn.com/tps/TB1ZWLGPXXXXXcoXFXXXXXXXXXX-1720-1160.png)
 
