@@ -19,7 +19,7 @@ Or do the same by executing one line
 git clone https://github.com/andyforever/sequelizer.git && cd sequelizer && npm install && npm start
 ```
 
-Or download the sequelizer.app for MacOs and just run it. [Download](https://github.com/andyforever/sequelizer/releases/download/publish%2F0.0.1/sequelizer.zip)
+Or download the sequelizer.app for MacOs and just run it. [Download](http://pan.baidu.com/s/1qYS3hiG)
 
 > Authorization may required. 
 
