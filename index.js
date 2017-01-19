@@ -16,15 +16,15 @@
     ]
 
     function handleSubmit(form) {
-      const data = getFormData(form);
+      const config = getFormData(form);
 
-      data.tables = data.tables ? data.tables.split(',') : '';
-      data.directory = data.directory || __dirname + '/models'
-      data.camelCase = data.camelCase === 'on'
+      config.tables = config.tables ? config.tables.split(',') : '';
+      config.directory = config.directory || __dirname + '/models'
+      config.camelCase = config.camelCase === 'on'
 
       $progressBar.style.display="block";
       $exportBtn.disabled = true;
-      generate(data.database, data.username, data.password, data, function() {
+      generate(config, function() {
         $progressBar.style.display="none";
         $exportBtn.disabled = false;
       })
