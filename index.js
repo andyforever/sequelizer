@@ -1,4 +1,6 @@
 
+    const DB_CONFIG = 'DB_CONFIG'
+
     const generate = require('./generate')
     const {dialog} = require('electron').remote;
 
@@ -15,6 +17,24 @@
       { dialect:'sqlite',   port:null }
     ]
 
+    init();
+
+    /**
+     * form input initial value process
+     * @return
+     */
+    function init() {
+      let cacheConfig = localStorage.getItem(DB_CONFIG);
+      if (cacheConfig) {
+        try{
+          cacheConfig = JSON.parse(cacheConfig);
+          setFormData(cacheConfig);
+        } catch(e) {
+          console.log(e)
+        }
+      }
+    }
+
     function handleSubmit(form) {
       const config = getFormData(form);
 
@@ -25,6 +45,8 @@
       $progressBar.style.display="block";
       $exportBtn.disabled = true;
       generate(config, function() {
+        //set the configration to the localStorage when success
+        localStorage.setItem(DB_CONFIG, JSON.stringify(config));
         $progressBar.style.display="none";
         $exportBtn.disabled = false;
       })
@@ -53,6 +75,20 @@
       }
 
       return data;
+    }
+
+    function setFormData(data) {
+      const form = document.getElementsByTagName('form')[0];
+      const inputs = form.getElementsByTagName('input');
+      for (let i = 0; i < inputs.length; i++) {
+        if(inputs[i].type == 'text' || inputs[i].type == 'password') {
+          inputs[i].value = data[inputs[i].name]
+        } else if (inputs[i].type == 'radio' || inputs[i].type == 'checkbox') {
+          if (data[inputs[i].name] == inputs[i].value) {
+            inputs[i].checked = true;
+          }
+        }
+      }
     }
 
     function onDialectChange(dialect) {
