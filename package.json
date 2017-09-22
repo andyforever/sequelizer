@@ -17,11 +17,11 @@
   "author": "云数",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.4.1"
+    "electron": "^1.7.5"
   },
   "dependencies": {
     "mysql": "^2.12.0",
-    "pg": "6.1.2",
-    "sequelize-auto": "^0.4.18"
+    "pg": "^7.0.0",
+    "sequelize-auto": "^0.4.28"
   }
 }
