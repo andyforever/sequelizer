@@ -31,4 +31,4 @@ Specially Thanks the great projects.
 
 [sequelize](https://github.com/sequelize/sequelize)
 
-[sqquelize-auto](https://github.com/sequelize/sequelize-auto)
+[squelize-auto](https://github.com/sequelize/sequelize-auto)
