@@ -19,10 +19,6 @@ Or do the same by executing one line
 git clone https://github.com/andyforever/sequelizer.git && cd sequelizer && npm install && npm start
 ```
 
-> Authorization may required. 
-
-> Other OS(Linux,Windows) will be supported latter.
-
 ![screenshot](https://img.alicdn.com/tfs/TB1dxPomxGYBuNjy0FnXXX5lpXa-845-649.png)
 
 Specially Thanks the great projects.
