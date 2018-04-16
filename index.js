@@ -41,6 +41,7 @@
       config.tables = config.tables ? config.tables.split(',') : '';
       config.directory = config.directory || __dirname + '/models'
       config.camelCase = config.camelCase === 'on'
+      config.typescript = config.typescript === 'on'
 
       $progressBar.style.display="block";
       $exportBtn.disabled = true;
