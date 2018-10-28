@@ -1,8 +1,23 @@
-<!DOCTYPE html>
-<html>
+
   <head>
+    <script>
+      window.__setTheme = () => {
+        let userTheme = localStorage.user_theme
+        let OSTheme = localStorage.os_theme
+        let defaultTheme = 'light'
+        document.documentElement.setAttribute(
+          'data-theme',
+          userTheme || OSTheme || defaultTheme,
+        )
+      }
+      __setTheme()
+    </script>
+
     <meta charset="UTF-8">
     <title>Sequelizer</title>
+    <link rel="stylesheet" href="./style/light-mode.css">
+    <link rel="stylesheet" href="./style/dark-mode.css">
+    <link rel="stylesheet" href="./style/common.css">
     <link rel="stylesheet" href="./mdl/material.min.css">
     <script src="./mdl/material.min.js"></script>
   </head>
@@ -109,4 +124,3 @@
     </div>
   </body>
   <script src="index.js"></script>
-</html>

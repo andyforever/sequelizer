@@ -9,6 +9,30 @@
     const $directoryInput = document.getElementById('directory');
     const $portInput = document.getElementById('port');
 
+    if (process.platform == 'darwin') {
+      const { systemPreferences } = require('electron').remote
+    
+      const setOSTheme = () => {
+        let theme = systemPreferences.isDarkMode() ? 'dark' : 'light'
+        window.localStorage.os_theme = theme
+    
+        //
+        // Defined in index.html, so undefined when launching the app.
+        // Will be defined for `systemPreferences.subscribeNotification` callback.
+        //
+        if ('__setTheme' in window) {
+          window.__setTheme()
+        }
+      }
+    
+      systemPreferences.subscribeNotification(
+        'AppleInterfaceThemeChangedNotification',
+        setOSTheme,
+      )
+    
+      setOSTheme()
+    }
+
     const DIALECT_PORTS = [
       { dialect:'mssql',    port:1433 },
       { dialect:'mysql',    port:3306 },

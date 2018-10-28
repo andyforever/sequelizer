@@ -1,0 +1,30 @@
+[data-theme^="dark"], [data-theme] [data-theme^="dark"] {
+  --main-color: rgb(255,193,7);
+  --background-color: #182E40;
+}
+
+[data-theme^="dark"] input {
+  border: 1px solid #eee;
+  color: black;
+  background: rgba(238, 238, 238, 0.8);
+}
+
+[data-theme^="dark"] label {
+  color: #121212;
+}
+
+[data-theme^="dark"] label .mdl-radio__label, [data-theme^="dark"] .mdl-textfield--floating-label.is-focused .mdl-textfield__label, [data-theme^="dark"] .mdl-textfield--floating-label.is-dirty .mdl-textfield__label, [data-theme^="dark"] .mdl-textfield--floating-label.has-placeholder .mdl-textfield__label {
+  color: var(--main-color);
+}
+
+[data-theme^="dark"] .mdl-switch__ripple-container .mdl-ripple, [data-theme^="dark"] .mdl-radio__ripple-container .mdl-ripple, [data-theme^="dark"] .mdl-switch.is-checked .mdl-switch__thumb, [data-theme^="dark"] .mdl-radio__inner-circle {
+  background: var(--main-color);
+}
+
+[data-theme^="dark"] .mdl-radio.is-checked .mdl-radio__outer-circle {
+  border-color: var(--main-color);
+}
+
+[data-theme^="dark"] .mdl-switch.is-checked .mdl-switch__track {
+  background: rgba(255, 193, 7, 0.5) 
+}

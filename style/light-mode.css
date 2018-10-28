@@ -1,0 +1,4 @@
+[data-theme^="light"], [data-theme] [data-theme^="light"] {
+  --main-color: #000;
+  --background-color: #fff;
+}
