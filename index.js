@@ -1,8 +1,9 @@
 
     const DB_CONFIG = 'DB_CONFIG'
 
+    const electron = require('electron');
     const generate = require('./generate')
-    const {dialog} = require('electron').remote;
+    const {dialog, app} = electron.remote;
 
     const $progressBar = document.getElementById('progressBar');
     const $exportBtn = document.getElementById('exportBtn');
@@ -94,4 +95,21 @@
 
     function onDialectChange(dialect) {
       $portInput.value = DIALECT_PORTS.find(x => x.dialect === dialect).port
+    }
+
+    function t(key) {
+      try {
+        const tFilePath = `./locales/${app.getLocale()}.js`;
+        const tFile = require(tFilePath);
+        if (!tFile[key]) {
+          throw new Error('Missing translation');
+        }
+
+        return tFile[key];
+      } catch (e) {
+        const tFilePath = './locales/en.js';
+        const tFile = require(tFilePath);
+
+        return tFile[key] || key;
+      }
     }

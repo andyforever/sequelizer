@@ -14,15 +14,15 @@
           <div class="mdl-cell mdl-cell--6-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="host" name="host" value="localhost" required>
-              <label class="mdl-textfield__label" for="host">Host</label>
-              <span class="mdl-textfield__error">Host cannot be number empty!</span>
+              <label class="mdl-textfield__label" for="host" data-t="HOST">Host</label>
+              <span class="mdl-textfield__error" data-t="HOST_ERROR">Host cannot be number empty!</span>
             </div>
           </div>
           <div class="mdl-cell mdl-cell--6-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="port" pattern="-?[0-9]*(\.[0-9]+)?" name="port" value="3306" required>
-              <label class="mdl-textfield__label" for="port">Port</label>
-              <span class="mdl-textfield__error">Port must be number type and cannot be empty!</span>
+              <label class="mdl-textfield__label" for="port" data-t="PORT">Port</label>
+              <span class="mdl-textfield__error" data-t="HOST_ERROR">Port must be number type and cannot be empty!</span>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
           <div class="mdl-cell mdl-cell--6-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="database" name="database">
-              <label class="mdl-textfield__label" for="database">Database</label>
+              <label class="mdl-textfield__label" for="database" data-t="DATABASE">Database</label>
             </div>
           </div>
           <div class="mdl-cell mdl-cell--6-col">
@@ -60,13 +60,13 @@
           <div class="mdl-cell mdl-cell--6-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="username" name="username">
-              <label class="mdl-textfield__label" for="username">Username</label>
+              <label class="mdl-textfield__label" for="username" data-t="USERNAME">Username</label>
             </div>
           </div>
           <div class="mdl-cell mdl-cell--6-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="password" id="password" name="password">
-              <label class="mdl-textfield__label" for="password">Password</label>
+              <label class="mdl-textfield__label" for="password" data-t="PASSWORD">Password</label>
             </div>
           </div>
         </div>
@@ -74,13 +74,13 @@
           <div class="mdl-cell mdl-cell--6-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="tables" name="tables">
-              <label class="mdl-textfield__label" for="tables">Tables(Comma-separated)</label>
+              <label class="mdl-textfield__label" for="tables" data-t="TABLES">Tables(Comma-separated)</label>
             </div>
           </div>
           <div class="mdl-cell mdl-cell--6-col">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="upload" id="directory" name="directory" onclick="openFileDialog()">
-              <label class="mdl-textfield__label" for="directory">Output</label>
+              <label class="mdl-textfield__label" for="directory" data-t="OUTPUT_DIR">Output</label>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@
           <div class="mdl-cell mdl-cell--6-col">
             <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="camelCase">
               <input type="checkbox" id="camelCase" class="mdl-switch__input" checked name="camelCase">
-              <span class="mdl-switch__label" style="color: #999">Camelize</span>
+              <span class="mdl-switch__label" style="color: #999" data-camel>Camelize</span>
             </label>
           </div>
           <div class="mdl-cell mdl-cell--6-col">
@@ -100,7 +100,7 @@
         </div>
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--12-col" style="text-align: center;">
-            <button id="exportBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+            <button id="exportBtn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" data-t="EXPORT">
                Export
             </button>
           </div>
@@ -109,4 +109,9 @@
     </div>
   </body>
   <script src="index.js"></script>
+  <script>
+    document.querySelectorAll('[data-t]').forEach(item => {
+      item.innerHTML = t(item.getAttribute('data-t'));
+    });
+  </script>
 </html>
