@@ -42,6 +42,12 @@
       config.directory = config.directory || __dirname + '/models'
       config.camelCase = config.camelCase === 'on'
       config.typescript = config.typescript === 'on'
+      config.schema = config.schema ? config.schema : undefined;
+      if (config.dialect === 'postgres') {
+        config.additional = {
+          schema: config.schema ? config.schema : 'public'
+        };
+      }
 
       $progressBar.style.display="block";
       $exportBtn.disabled = true;
