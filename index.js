@@ -40,22 +40,27 @@
 
       config.tables = config.tables ? config.tables.split(',') : '';
       config.directory = config.directory || __dirname + '/models'
-      config.camelCase = config.camelCase === 'on'
-      config.typescript = config.typescript === 'on'
-      config.schema = config.schema ? config.schema : undefined;
+
+      const genConfig = {
+        ...config,
+        camelCase: config.camelCase === 'on' ? true : false,
+        schema: config.schema ? config.schema : undefined,
+      }
+
       if (config.dialect === 'postgres') {
-        config.additional = {
+        genConfig.additional = {
           schema: config.schema ? config.schema : 'public'
         };
       }
 
       $progressBar.style.display="block";
       $exportBtn.disabled = true;
-      generate(config, function() {
+      generate(genConfig, function() {
         //set the configration to the localStorage when success
         localStorage.setItem(DB_CONFIG, JSON.stringify(config));
         $progressBar.style.display="none";
         $exportBtn.disabled = false;
+        console.log('Models generated successfully!')
       })
     }
 
@@ -73,7 +78,7 @@
 
       for (let i = 0; i < inputs.length; i++) {
         if(inputs[i].type == 'text' || inputs[i].type == 'password') {
-          data[inputs[i].name] = inputs[i].value
+          data[inputs[i].name] = String(inputs[i].value)
         } else if (inputs[i].type == 'radio' || inputs[i].type == 'checkbox') {
           if (inputs[i].checked) {
             data[inputs[i].name] = inputs[i].value;
@@ -89,7 +94,7 @@
       const inputs = form.getElementsByTagName('input');
       for (let i = 0; i < inputs.length; i++) {
         if(inputs[i].type == 'text' || inputs[i].type == 'password') {
-          inputs[i].value = data[inputs[i].name]
+          inputs[i].value = data[inputs[i].name] ? data[inputs[i].name] : ''
         } else if (inputs[i].type == 'radio' || inputs[i].type == 'checkbox') {
           if (data[inputs[i].name] == inputs[i].value) {
             inputs[i].checked = true;
