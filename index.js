@@ -43,7 +43,7 @@
 
       const genConfig = {
         ...config,
-        camelCase: config.camelCase === 'on' ? true : false,
+        camelCase: config.camelCase === 'on',
         schema: config.schema ? config.schema : undefined,
       }
 
@@ -60,7 +60,6 @@
         localStorage.setItem(DB_CONFIG, JSON.stringify(config));
         $progressBar.style.display="none";
         $exportBtn.disabled = false;
-        console.log('Models generated successfully!')
       })
     }
 
