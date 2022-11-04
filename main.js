@@ -36,7 +36,14 @@ function createWindow () {
   Menu.setApplicationMenu(menu)
 
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 860, height: 580})
+  mainWindow = new BrowserWindow({
+    width: 860, 
+    height: 580, 
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    }
+  })
 
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
