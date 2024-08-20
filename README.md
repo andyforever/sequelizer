@@ -1,6 +1,6 @@
 # Sequelizer
 
-### A desktop application to export sequelize models automatically and visually.
+### A desktop application to export [sequelize](https://sequelize.org/) models automatically and visually.
 
 
 ```bash
