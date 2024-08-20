@@ -1,8 +1,8 @@
 {
   "name": "sequelizer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A minimal Electron application",
-  "main": "main.js",
+  "main": "./src/main.js",
   "scripts": {
     "start": "electron ."
   },
@@ -21,10 +21,11 @@
     "tedious": "^2.3.1"
   },
   "dependencies": {
+    "electron": "latest",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "pg": "^6.1.2",
     "sequelize": "^6.21.4",
-    "sequelize-auto": "^0.8.8"
+    "sequelize-auto": "latest"
   }
 }
